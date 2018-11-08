@@ -28,3 +28,17 @@ for i in range(10):
     fig.add_subplot(2, 5, i+1)
     X1 = X_test[i].reshape(28,28)
     plt.imshow(X1)
+
+# Plot confusion matrix
+from sklearn.cross_validation import train_test_split
+from sklearn.metrics import classification_report, confusion_matrix
+
+X_train_R, X_test_R, y_train_R, y_test_R = train_test_split(X_train, y_train)
+predictions = nn.predict(X_test_R)
+print(classification_report(y_test_R, predictions))
+confusion = confusion_matrix(y_test_R, predictions)
+plt.matshow(confusion)
+plt.colorbar()
+plt.ylabel('True label')
+plt.xlabel('Predicted label')
+plt.show()
